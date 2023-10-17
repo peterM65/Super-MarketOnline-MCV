@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Category>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!--Page header-->
+<div class="page-header">
+    <div class="page-leftheader">
+        <h4 class="page-title">Category List</h4>
+        <ol class="breadcrumb pl-0">
+            <li class="breadcrumb-item active" aria-current="page">Category</li>
+        </ol>
+    </div>
+    <div class="page-rightheader">
+        <div class="ml-3 ml-auto d-flex">
+            <span class="pg-header">
+                <a asp-controller="Category" asp-action="Create" class="btn btn-primary-gradient ml-4 mt-2 "><i class="fa fa-plus-circle mr-1"></i>Create Category</a>
+            </span>
+        </div>
+    </div>
+</div>
+<!--End Page header-->
+<!-- Row -->
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="card">
+            <div class="table-responsive">
+                <table class="table card-table table-vcenter table-striped text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>Category Name</th>
+                            <th>Display Order</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.OrderBy(u => u.DisplayOrder))
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.DisplayOrder</td>
+                                <td>
+                                    <div class=" text-center">
+                                        <a asp-controller="Category" asp-action="Edit" asp-route-Id="@item.CategoryId" class="btn btn-success  mx-2 ">
+                                            <i class="fa fa-pencil-square-o"></i> Edit
+                                        </a>
+                                        <a asp-controller="Category" asp-action="Delete" asp-route-Id="@item.CategoryId" class="btn btn-danger mx-2 ">
+                                            <i class="fa fa-trash-o"></i> Delete
+                                        </a>
+
+                                    </div>
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- table-responsive -->
+        </div>
+    </div>
+</div>
+<!-- End Row -->
