@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<Product>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -13,3 +15,63 @@
     </div>
 </div>
 <!--End Page header-->
+
+
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-md-4 col-sm-6">
+            <div class="product-grid card item-card">
+                <div class="product-image card-body">
+                    <a asp-area="Customer" asp-route-productId="@product.Id" asp-action="Details" class="image">
+                        @if (product.ImageUrl == "")
+                        {
+                            <img src="~/assets/images/products/1.png" alt="img" class="pic-1 img-fluid">
+                            <img src="~/assets/images/products/1.png" alt="img" class="pic-2 img-fluid">
+                        }
+                        else
+                        {
+                            <img src="@product.ImageUrl" class="pic-1 img-fluid">
+                            <img src="@product.ImageUrl" alt="img" class="pic-2 img-fluid">
+                        }
+                    </a>
+                    <span class="product-new-label bg-danger">Sale</span>
+                    <ul class="product-icons">
+                        <li><a asp-area="Customer" asp-route-productId="@product.Id" asp-action="Details" data-tip="Quick View"><i class="fa fa-ellipsis-v"></i></a></li>
+                        <li><a href="#" data-tip="Add to wishlist"><i class="fa fa-heart"></i></a></li>
+                    </ul>
+                    <div class="product-rating">
+                        <div class="wideget-user-rating rating">
+                            <a href="#">
+                                <i class="fa fa-star text-warning"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fa fa-star text-warning"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fa fa-star text-warning"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fa fa-star text-warning"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fa fa-star-o text-warning mr-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="cardtitle">
+                        <span>@product.Title</span>
+                        <a>@product.Brand</a>
+                    </div>
+                    <div class="cardprice">
+                        <span class="type--strikethrough">List Price: EGP @product.ListPrice</span>
+                        <span>As low as: EGP @product.Price</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<!-- End  Row -->
