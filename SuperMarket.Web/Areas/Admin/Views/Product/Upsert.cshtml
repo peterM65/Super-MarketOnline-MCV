@@ -1,0 +1,128 @@
+﻿@model ProductVM
+@{
+    ViewData["Title"] = "Upsert";
+}
+@section Stylesheets{
+    <!-- File Uploads css-->
+    <link href="~/assets/plugins/fileuploads/css/dropify.css" rel="stylesheet" type="text/css" />
+}
+
+<!--Page header-->
+<div class="page-header">
+    <div class="page-leftheader">
+        <h4 class="page-title">@(Model.Product.Id!=0?"Update":"Create") Category</h4>
+        <ol class="breadcrumb pl-0">
+            <li class="breadcrumb-item " aria-current="page"><a asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@(Model.Product.Id!=0?"Update":"Create") Product</li>
+        </ol>
+    </div>
+</div>
+<!--End Page header-->
+
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <form method="post" asp-area="Admin" asp-controller="Product" asp-action="Upsert" enctype="multipart/form-data">
+                    <input asp-for="Product.Id" hidden />
+                    <input asp-for="Product.ImageUrl" hidden />
+                    <div class="form-group">
+                        <label asp-for="Product.Title" class="form-label"></label>
+                        <input asp-for="Product.Title" class="form-control" placeholder="Title">
+                        <span asp-validation-for="Product.Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Product.Description" class="form-label"></label>
+                        <textarea asp-for="Product.Description" class="form-control" placeholder="Description"></textarea>
+                        <span asp-validation-for="Product.Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Product.ASIN" class="form-label"></label>
+                        <input asp-for="Product.ASIN" class="form-control" placeholder="ASIN">
+                        <span asp-validation-for="Product.ASIN" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Product.Brand" class="form-label"></label>
+                        <input asp-for="Product.Brand" class="form-control" placeholder="Brand">
+                        <span asp-validation-for="Product.Brand" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Product.ListPrice" class="form-label"></label>
+                        <input asp-for="Product.ListPrice" class="form-control" placeholder="ListPrice">
+                        <span asp-validation-for="Product.ListPrice" class="text-danger"></span>
+                    </div><div class="form-group">
+                        <label asp-for="Product.Price" class="form-label"></label>
+                        <input asp-for="Product.Price" class="form-control" min="1" placeholder="Price">
+                        <span asp-validation-for="Product.Price" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Product.Price12" class="form-label"></label>
+                        <input asp-for="Product.Price12" class="form-control" min="1" placeholder="Price12">
+                        <span asp-validation-for="Product.Price12" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Product.Price24" class="form-label"></label>
+                        <input asp-for="Product.Price24" class="form-control" min="1" placeholder="Price24">
+                        <span asp-validation-for="Product.Price24" class="text-danger"></span>
+                    </div>
+                    <div class="form-group ">
+                        <label asp-for="Product.CategoryId" class="form-label">Category</label>
+                        <select asp-for="@Model.Product.CategoryId" asp-items="@Model.CategoryList" class="form-control select2 custom-select">
+                            <option disabled selected>Choose one Catrgory</option>
+                        </select>
+                        <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group ">
+                        <label asp-for="Product.ImageUrl" class="form-label">Image Product</label>
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-12">
+                                <input type="file" name="file" data-default-file="@Model.Product.ImageUrl" class="dropify" data-height="180" />
+                            </div>
+                            <div class="col-lg-4 col-sm-12">
+                                <input type="file" name="file" class="dropify" data-height="180" />
+                            </div>
+                            <div class="col-lg-4 col-sm-12">
+                                <input type="file" name="file" class="dropify" data-height="180" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row pt-2">
+                        <div class="col-6 col-md-3">
+                            @if (Model.Product.Id != 0)
+                            {
+                                <button type="submit" class="btn btn-success form-control">Upadte</button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn btn-primary form-control">Create</button>
+                            }
+
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <a asp-area="Admin" asp-controller="product" asp-action="Index" class="btn btn-outline-secondary border  form-control">
+                                Back to List
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            //plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+            //toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            plugins: 'anchor autolink charmap codesample emoticons  lists   table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough |  align lineheight | numlist bullist indent outdent',
+        });
+    </script>
+    <!-- File uploads js -->
+    <script src="~/assets/plugins/fileuploads/js/dropify.js"></script>
+    <script src="~/assets/js/filupload.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+}

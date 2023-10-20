@@ -34,6 +34,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
 
+    <!---DataTable css-->
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+
+    @await RenderSectionAsync("Stylesheets", required: false)
+
     <!-- Skin css-->
     <link id="theme" rel="stylesheet" type="text/css" media="all" href="~/assets/skins/hor-skin/hor-skin1.css" />
     @*<link id="theme" rel="stylesheet" type="text/css" media="all" href="~/assets/skins/hor-skin/horizontal-dark.css" />*@
@@ -55,17 +60,17 @@
                     <div class="d-flex">
                         <a id="horizontal-navtoggle" class="animated-arrow hor-toggle"><span></span></a><!-- sidebar-toggle-->
                         <a class="header-brand" href="index.html">
-                            <img src="~/assets/images/brand/LogoShop.png" class="header-brand-img desktop-lgo" alt="logo">
-                            <img src="~/assets/images/brand/LogoShop.png" class="header-brand-img mobile-logo" alt="logo">
+                            <img src="~/assets/images/brand/shop.jpg" style="width:80px" class="header-brand-img desktop-lgo" alt="logo">
+                            <img src="~/assets/images/brand/shop.jpg" class="header-brand-img mobile-logo" alt="logo">
                         </a>
                         <div class="mt-1">
                         </div><!-- SEARCH -->
                         <div class="d-flex order-lg-2 ml-auto">
                             @*<div class="dropdown   header-fullscreen">
-                            <a class="nav-link icon full-screen-link" id="fullscreen-button">
-                                <i class="mdi mdi-arrow-collapse"></i>
-                            </a>
-                        </div>*@
+                                <a class="nav-link icon full-screen-link" id="fullscreen-button">
+                                    <i class="mdi mdi-arrow-collapse"></i>
+                                </a>
+                            </div>*@
                             <a class="nav-link icon" href="#">
                                 <i class="typcn typcn-shopping-cart"></i>
                                 <span class=" nav-unread badge badge-info  badge-pill">2</span>
@@ -87,7 +92,7 @@
                                 <a href="#" class="sub-icon "><i class="typcn typcn-cog-outline hor-icon"></i> CONTENT MANAGMENT <i class="fa fa-angle-down horizontal-icon"></i></a>
                                 <ul class="sub-menu">
                                     <li aria-haspopup="true"><a asp-area="Admin" asp-controller="Category" asp-action="Index">CATEGORY</a></li>
-                                    <li aria-haspopup="true"><a href="cards-image.html">PRODUCT</a></li>
+                                    <li aria-haspopup="true"><a asp-area="Admin" asp-controller="Product" asp-action="Index">PRODUCT</a></li>
                                     <li aria-haspopup="true"><a href="chat.html">COMPANY</a></li>
                                     <li>
                                         <div class="dropdown-divider mt-0"></div>
@@ -168,6 +173,14 @@
 
         <!-- Apexchart js-->
         <script src="~/assets/js/apexcharts.js"></script>
+
+        <!---Data Table js-->
+        <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <!-- Tiny js-->
+        <script src="https://cdn.tiny.cloud/1/phbgkrrl98v0rp8afoxebwkqo8p8i8vqkb3o239548oeakmj/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
         @await RenderSectionAsync("Scripts", required: false)
 

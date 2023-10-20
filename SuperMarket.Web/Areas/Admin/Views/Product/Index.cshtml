@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section Stylesheets{
+    <!-- Data table css -->
+    <link href="~/assets/plugins/datatable/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+    <!-- Slect2 css -->
+    <link href="~/assets/plugins/select2/select2.min.css" rel="stylesheet" />
+}
+
+
+<!--Page header-->
+<div class="page-header">
+    <div class="page-leftheader">
+        <h4 class="page-title">Product List</h4>
+        <ol class="breadcrumb pl-0">
+            <li class="breadcrumb-item active" aria-current="page">Product</li>
+        </ol>
+    </div>
+    <div class="page-rightheader">
+        <div class="ml-3 ml-auto d-flex">
+            <span class="pg-header">
+                <a asp-area="Admin" asp-controller="Product" asp-action="Upsert" class="btn btn-primary-gradient ml-4 mt-2 "><i class="fa fa-plus-circle mr-1"></i>Create Product</a>
+            </span>
+        </div>
+    </div>
+</div>
+<!--End Page header-->
+<!-- Row -->
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="tableData" class="table card-table table-vcenter table-striped text-nowrap" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>ASIN</th>
+                            <th>Price</th>
+                            <th>Brand</th>
+                            <th>Category</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <!-- table-responsive -->
+        </div>
+    </div>
+</div>
+<!-- End Row -->
+
+@section Scripts{
+    <script src="~/js/product.js"></script>
+}
